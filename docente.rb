@@ -10,3 +10,5 @@ class Docente
 		@minutos_tardanza=minutos_tardanza;
 	end
 end
+
+lala
