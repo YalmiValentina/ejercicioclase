@@ -19,7 +19,7 @@ class Docente
 		puts "Minutos de tardanza #{@minutos_tardanza}"
 		puts "******************"
 	end
-	def obtenerPagoDocentePorGrado
+	def obtenerPagoDocente
 		tarifa = 0
 		case @grado
 			when "bachiller"
@@ -33,9 +33,6 @@ class Docente
 			else
 				tarifa = 0
 		end
-		return tarifa;
-	end
-	def calcularAumento
 		aumento = 0
 		case @antiguedad
 			when 0..3
@@ -49,9 +46,6 @@ class Docente
 			else
 			aumento = 0.1
 		end
-		return aumento;
-	end
-	def calcularBono
 		bono = 0
 		case @minutos_tardanza
 			when 0
@@ -65,13 +59,20 @@ class Docente
 			else
 			bono = -40
 		end
-		return bono
-		end
+		pagoMensual= tarifa*(1+aumento)*@horas_trabajadas + bono;
+		return pagoMensual
+
+	end
+
 end
 
+
 profesor1= Docente.new "123","Juan","Perez","bachiller", 10,300,30;
+=begin
 puts profesor1.imprimirDatosDocente;
 puts profesor1.obtenerPagoDocentePorGrado;
 puts profesor1.calcularAumento;
 puts profesor1.calcularBono;
+=end
+puts profesor1.obtenerPagoDocente
 
