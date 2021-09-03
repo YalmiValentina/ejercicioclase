@@ -1,14 +1,22 @@
 class Docente
 	#attr_accessor :dni,name,apellido,grado,antiguedad,horas_trabajadas,minutos_tardanza
 	@@sueldo=0;
-	def initialize(dni,nombre,apellido,grado,antiguedad,horas_trabajadas,minutos_tardanza)
-		@dni=dni;
-		@nombre=nombre;
-		@apellido=apellido;
-		@grado=grado;
-		@antiguedad=antiguedad;
-		@horas_trabajadas=horas_trabajadas;
-		@minutos_tardanza=minutos_tardanza;
+	def initialize
+		print "ingrese DNI: "
+		@dni=gets.chomp
+		print "ingrese nombre: "
+		@nombre = gets.chomp
+		print "ingrese apellido: "
+		@apellido = gets.chomp
+		print "ingrese grado: "
+		@grado = gets.chomp
+		print "ingrese antiguedad: "
+		@antiguedad = gets.to_i
+		print "ingrese horas trabajadas: "
+		@horas_trabajadas = gets.to_i
+		print "ingrese minutos de tardanza: "
+		@minutos_tardanza = gets.to_i
+		@pago_docente=obtenerPagoDocente
 	end
 	def imprimirDatosDocente
 		puts "Nombre #{@nombre} #{@apellido}"
@@ -17,6 +25,7 @@ class Docente
 		puts "Antiguedad #{@antiguedad}"
 		puts "Horas trabajadas #{@horas_trabajadas}"
 		puts "Minutos de tardanza #{@minutos_tardanza}"
+		puts "Pago Docente #{@pago_docente}"
 		puts "******************"
 	end
 	def obtenerPagoDocente
@@ -61,19 +70,19 @@ class Docente
 		end
 		pagoMensual= tarifa*(1+aumento)*@horas_trabajadas + bono;
 		return pagoMensual
-
 	end
 
 end
 
 
-profesor1= Docente.new "123","Juan","Perez","bachiller", 10,300,30;
+#profesor1= Docente.new "123","Juan","Perez","bachiller", 10,300,30;
 =begin
 puts profesor1.imprimirDatosDocente;
 puts profesor1.obtenerPagoDocentePorGrado;
 puts profesor1.calcularAumento;
 puts profesor1.calcularBono;
 =end
+profesor1=Docente.new
 puts profesor1.imprimirDatosDocente
-puts profesor1.obtenerPagoDocente
+
 
