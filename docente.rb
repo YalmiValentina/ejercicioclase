@@ -74,5 +74,6 @@ puts profesor1.obtenerPagoDocentePorGrado;
 puts profesor1.calcularAumento;
 puts profesor1.calcularBono;
 =end
+puts profesor1.imprimirDatosDocente
 puts profesor1.obtenerPagoDocente
 
