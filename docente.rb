@@ -66,6 +66,13 @@ class Docente
 		end
 		puts "Monto Pagado por grado #{clase} = #{suma}";
 	end
+	def montoTotal
+		suma=0;
+		for i in (0...@@docente.count)
+			suma=suma+@@docente[i]["pago_docente"];
+		end
+		puts "Monto total pagado = #{suma}";
+	end
 	def obtenerPagoDocente
 		tarifa = 0
 		case @@x
@@ -122,6 +129,7 @@ profesor1.montoPorGrado("bachiller");
 profesor1.montoPorGrado("titulado");
 profesor1.montoPorGrado("maestria");
 profesor1.montoPorGrado("doctorado");
+profesor1.montoTotal;
 
 
 
