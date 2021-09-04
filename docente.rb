@@ -17,7 +17,7 @@ class Docente
 			@@docente[i]["nombre"]=gets.chomp
 			print "ingrese apellido: "
 			@@docente[i]["apellido"]=gets.chomp
-			print "ingrese grado: "
+			print "ingrese grado:(bachiller,titulado,maestria o doctorado) "
 			@@x=gets.chomp
 			@@docente[i]["grado"]=@@x
 			print "ingrese antiguedad: "
@@ -116,7 +116,6 @@ class Docente
 		pagoMensual= tarifa*(1+aumento)*@@z+bono;
 		return pagoMensual
 	end
-
 end
 
 profesor1=Docente.new;
