@@ -1,36 +1,65 @@
 class Docente
 	#attr_accessor :dni,name,apellido,grado,antiguedad,horas_trabajadas,minutos_tardanza
-	@@sueldo=0;
+	@@x=""
+	@@y=0
+	@@z=0
+	@@w=0
+	@@v=0.0
+	@@docente=[]
 	def initialize
-		print "ingrese DNI: "
-		@dni=gets.chomp
-		print "ingrese nombre: "
-		@nombre = gets.chomp
-		print "ingrese apellido: "
-		@apellido = gets.chomp
-		print "ingrese grado: "
-		@grado = gets.chomp
-		print "ingrese antiguedad: "
-		@antiguedad = gets.to_i
-		print "ingrese horas trabajadas: "
-		@horas_trabajadas = gets.to_i
-		print "ingrese minutos de tardanza: "
-		@minutos_tardanza = gets.to_i
-		@pago_docente=obtenerPagoDocente
+		ingreso="Si"
+		i=0
+		while ingreso=="Si"
+			@@docente[i]={}
+			print "ingrese DNI: "
+			@@docente[i]["dni"]=gets.chomp
+			print "ingrese nombre: "
+			@@docente[i]["nombre"]=gets.chomp
+			print "ingrese apellido: "
+			@@docente[i]["apellido"]=gets.chomp
+			print "ingrese grado: "
+			@@x=gets.chomp
+			@@docente[i]["grado"]=@@x
+			print "ingrese antiguedad: "
+			@@y=gets.to_i
+			@@docente[i]["antiguedad"]=@@y
+			print "ingrese horas trabajadas: "
+			@@z=gets.to_i
+			@@docente[i]["horas_trabajadas"]=@@z
+			print "ingrese minutos de tardanza: "
+			@@w=gets.to_i
+			@@docente[i]["minutos_tardanza"]=@@w
+			@@v=obtenerPagoDocente
+			puts "Sueldo: #{@@v}"
+			@@docente[i]["pago_docente"]=@@v
+			i=i+1
+			print "Desea ingresar otro docente (Si/No): "
+			ingreso=gets.chomp
+		end
 	end
-	def imprimirDatosDocente
-		puts "Nombre #{@nombre} #{@apellido}"
-		puts "DNI #{@dni}"
-		puts "Grado de instrucción #{@grado}"
-		puts "Antiguedad #{@antiguedad}"
-		puts "Horas trabajadas #{@horas_trabajadas}"
-		puts "Minutos de tardanza #{@minutos_tardanza}"
-		puts "Pago Docente #{@pago_docente}"
-		puts "******************"
+	def datosDocente
+		for i in (0...@@docente.count)
+			puts "Nombre #{@@docente[i]['nombre']} #{@@docente[i]['apellido']}"
+			puts "DNI #{@@docente[i]['dni']}"
+			puts "Grado de instrucción #{@@docente[i]['grado']}"
+			puts "Antiguedad #{@@docente[i]['antiguedad']}"
+			puts "Horas trabajadas #{@@docente[i]['horas_trabajadas']}"
+			puts "Minutos de tardanza #{@@docente[i]['minutos_tardanza']}"
+			puts "Pago Docente #{@@docente[i]['pago_docente']}"
+			puts "******************"
+		end
+	end
+	def claseDocente(clase)
+		puts "Docentes con grado #{clase}";
+		for i in (0...@@docente.count)
+			if @@docente[i]["grado"]==clase
+				puts "Nombre #{@@docente[i]['nombre']} #{@@docente[i]['apellido']}";
+			end
+		end
 	end
 	def obtenerPagoDocente
 		tarifa = 0
-		case @grado
+		case @@x
 			when "bachiller"
 				tarifa = 40
 			when "titulado"
@@ -43,7 +72,7 @@ class Docente
 				tarifa = 0
 		end
 		aumento = 0
-		case @antiguedad
+		case @@y
 			when 0..3
 			aumento = 0.03
 			when 4..6
@@ -56,7 +85,7 @@ class Docente
 			aumento = 0.1
 		end
 		bono = 0
-		case @minutos_tardanza
+		case @@w
 			when 0
 			bono = 120
 			when 1..5
@@ -68,21 +97,18 @@ class Docente
 			else
 			bono = -40
 		end
-		pagoMensual= tarifa*(1+aumento)*@horas_trabajadas + bono;
+		pagoMensual= tarifa*(1+aumento)*@@z+bono;
 		return pagoMensual
 	end
 
 end
 
+profesor1=Docente.new;
+profesor1.datosDocente;
+profesor1.claseDocente("bachiller");
+profesor1.claseDocente("titulado");
+profesor1.claseDocente("maestria");
+profesor1.claseDocente("doctorado");
 
-#profesor1= Docente.new "123","Juan","Perez","bachiller", 10,300,30;
-=begin
-puts profesor1.imprimirDatosDocente;
-puts profesor1.obtenerPagoDocentePorGrado;
-puts profesor1.calcularAumento;
-puts profesor1.calcularBono;
-=end
-profesor1=Docente.new
-puts profesor1.imprimirDatosDocente
 
 
